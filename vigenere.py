@@ -67,6 +67,31 @@ def encrypt(plain_text, key):
     return cipher_text
 
 
+def decrypt(cipher_text, key):
+    # create a plain text string
+    plain_text = ""
+    key_len = len(key)
+    # loop through the cipher text
+    char_idx = 0
+    for i in range(len(cipher_text)):
+        if is_alphebetical(cipher_text[i]):
+            # get the row index
+            row_index = ord(key[char_idx % key_len].upper()) - ord("A")
+            # get the column index
+            row = vigenere_table[row_index]
+            col_index = row.index(cipher_text[i].upper())
+            # get the letter from the vigenere table
+            letter = vigenere_table[0][col_index]
+            # add the letter to the plain text
+            plain_text += make_letter_same_case(letter, cipher_text[i])
+            char_idx += 1
+        else:
+            plain_text += cipher_text[i]
+
+    # return the plain text
+    return plain_text
+
+
 print("Vigenere Cipher. Enter plain text and key to encrypt.")
 # add main method
 def main():
@@ -78,6 +103,10 @@ def main():
     cipher_text = encrypt(plain_text, key)
     # print the cipher text
     print(f"Cipher text: {cipher_text}")
+    # decrypt the cipher text
+    plain_text = decrypt(cipher_text, key)
+    # print the plain text
+    print(f"Plain text: {plain_text}")
 
 
 if __name__ == "__main__":
