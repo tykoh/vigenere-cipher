@@ -5,10 +5,11 @@ The Vigenère cipher uses a simple form of polyalphabetic substitution. A polyal
 
 
 The encryption is done as follows:
-Ci = (P i+ Kj) mod 26,
-where Kj is the j-th letter of the key, 
-Pi is і-th letter of the original message, and
-Ci is the i-th letter of the ciphertext.
+`Ci = (P i+ Kj) mod 26`
+
+where `Kj` is the `j-th` letter of the key, 
+`Pi` is `і-th` letter of the original message, and
+`Ci` is the `i-th` letter of the ciphertext.
 
 Pseudo-code:
 
@@ -20,4 +21,10 @@ for index, character in plaintext:
 
 return ciphertext
 
+```
+
+## Run the program
+
+```bash
+$ python3 vigenere.py
 ```
